@@ -10,7 +10,11 @@ win = False
 pokemon = ("")
 pcokemon = ("")
 continuar = ("")
-
+bag = [ ]
+coin = int(randrange(30,90))
+bagO = ("")
+merc = ("")
+chancedemerc = int(randrange(1,100))
 
 print("--------------------------------------------------")
 
@@ -39,6 +43,44 @@ while (death == False):
     while(death == False and win == False):
         pcPokemon = int(randrange(1,5))
         pcPokeNivel = int(randrange(0,5))
+
+        if chancedemerc >= 65:
+            print("--------------------------------------------------\n")
+            print("-----------O Mercador está nas redonzas-----------\n")
+            merc = input("Você quer comprar alguma coisa: ").lower()
+            if merc == ("sim"):
+                print("Você tem: $",coin,"\n")
+                print("revive -> 30 golds")
+                print("pokebola -> 50 golds")
+                comprar = input("O que você quer comprar: ")
+                if comprar == ("revive"):
+                    coin -= 30
+                    bag.append("revive")
+                    print("Você tem: $",coin,"\n")
+
+                elif comprar == ("pokebola"):
+                    coin -= 50
+                    bag.append("pokebola")
+                    print("Você tem: $",coin,"\n")
+
+            elif merc == ("s"):
+                print("Você tem: $",coin,"\n")
+                print("revive -> 30 golds")
+                print("pokebola -> 50 golds")
+                comprar = input("O que você quer comprar: ")
+                if comprar == ("revive"):
+                    coin -= 30
+                    bag.append("revive")
+                    print("Você tem: $",coin,"\n")
+
+                elif comprar == ("pokebola"):
+                    coin -= 50
+                    bag.append("pokebola")
+                    print("Você tem: $",coin,"\n")
+
+            else:
+                pass
+
         print("--------------------------------------------------\n")
 
         if pcPokemon == 1:
@@ -173,14 +215,14 @@ quu..__
                    ,'         _.-'              .
                   /   ,     ,'                   `
                  .   /     /                     ``.
-                 |  |     .                       \.\
+                 |  |     .                       \.
        ____      |___._.  |       __               \ `.
-     .'    `---""       ``"-.--"'`  \               .  \
+     .'    `---""       ``"-.--"'`  \               .  
     .  ,            __               `              |   .
     `,'         ,-"'  .               \             |    L
    ,'          '    _.'                -._          /    |
   ,`-.    ,".   `--'                      >.      ,'     |
- . .'\'   `-'       __    ,  ,-.         /  `.__.-      ,'
+ . .' '   `-'       __    ,  ,-.         /  `.__.-      ,'
  ||:, .           ,'  ;  /  / \ `        `.    .      .'/
  j|:D  \          `--'  ' ,'_  . .         `.__, \   , /
 / L:_  |                 .  "' :_;                `.'.'
@@ -204,13 +246,37 @@ quu..__
         if pcPokemon == select:
             print(f"Seu", pokemon, "empatou no combate ele será resolvido pelo nivel")
             if pcPokemon + pcPokeNivel > select + pokeNivelP:
-                print(f"Você Perdeu seu", pokemon, "Morreu")
+                print(f"Você Perdeu seu", pokemon, "Desmaiou")
                 death = True
                 for i in range(6):
-                  os.system('color c')
-                  time.sleep(0.2)
-                  os.system('color f')
-                  time.sleep(0.2)
+                    os.system('color c')
+                    time.sleep(0.2)
+                    os.system('color f')
+                    time.sleep(0.2)
+                    bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                    if bagO == ("sim"):
+                        print(bag)
+                        rem = (input("Qual item você quer usar: "))
+                        bag.remove(rem)
+                        print(bag)
+                        if rem == ("revive"):
+                            death = False
+                            break
+
+                    elif bagO == ("s"):
+                        print(bag)
+                        rem = (input("Qual item você quer usar: "))
+                        bag.remove(rem)
+                        print(bag)
+                        if rem == ("revive"):
+                            death = False
+                            break
+
+                    elif bagO == ("não"):
+                        break
+
+                    else:
+                        break
 
             else:
                 print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -218,16 +284,41 @@ quu..__
                 print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
                 continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
                 win = True
+                coin += 15
             
 
         elif pcPokemon == 1 and select == 2:
-            print(f"Você Perdeu seu", pokemon, "Morreu")
+            print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
-                  os.system('color c')
-                  time.sleep(0.2)
-                  os.system('color f')
-                  time.sleep(0.2)
+                os.system('color c')
+                time.sleep(0.2)
+                os.system('color f')
+                time.sleep(0.2)
+                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                if bagO == ("sim"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("s"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("não"):
+                    break
+
+                else:
+                    break
 
         elif pcPokemon == 1 and select == 3:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -235,15 +326,40 @@ quu..__
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
             continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
             win = True
+            coin += 15
 
         elif pcPokemon == 1 and select == 4:
-            print(f"Você Perdeu seu", pokemon, "Morreu")
+            print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
-                  os.system('color c')
-                  time.sleep(0.2)
-                  os.system('color f')
-                  time.sleep(0.2)
+                os.system('color c')
+                time.sleep(0.2)
+                os.system('color f')
+                time.sleep(0.2)
+                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                if bagO == ("sim"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("s"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("não"):
+                    break
+
+                else:
+                    break
 
         elif pcPokemon == 2 and select == 1:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -251,15 +367,40 @@ quu..__
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
             continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
             win = True
+            coin += 15
 
         elif pcPokemon == 2 and select == 3:
-            print(f"Você Perdeu seu", pokemon, "Morreu")
+            print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
-                  os.system('color c')
-                  time.sleep(0.2)
-                  os.system('color f')
-                  time.sleep(0.2)
+                os.system('color c')
+                time.sleep(0.2)
+                os.system('color f')
+                time.sleep(0.2)
+                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                if bagO == ("sim"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("s"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("não"):
+                    break
+
+                else:
+                    break
 
         elif pcPokemon == 2 and select == 4:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -267,54 +408,130 @@ quu..__
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
             continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
             win = True
+            coin += 15
 
         elif pcPokemon == 3 and select == 1:
-            print(f"Você Perdeu seu", pokemon, "Morreu")
+            print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
-                  os.system('color c')
-                  time.sleep(0.2)
-                  os.system('color f')
-                  time.sleep(0.2)
+                os.system('color c')
+                time.sleep(0.2)
+                os.system('color f')
+                time.sleep(0.2)
+                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                if bagO == ("sim"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("s"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("não"):
+                    break
+
+                else:
+                    break
 
         elif pcPokemon == 3 and select == 2:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ".lower())
+            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
             win = True
+            coin += 15
 
         elif pcPokemon == 3 and select == 4:
-            print(f"Você Perdeu seu", pokemon, "Morreu")
+            print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
-                  os.system('color c')
-                  time.sleep(0.2)
-                  os.system('color f')
-                  time.sleep(0.2)
+                os.system('color c')
+                time.sleep(0.2)
+                os.system('color f')
+                time.sleep(0.2)
+                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                if bagO == ("sim"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("s"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("não"):
+                    break
+
+                else:
+                    break
 
         elif pcPokemon == 4 and select == 1:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ".lower())
+            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
             win = True
+            coin += 15
 
         elif pcPokemon == 4 and select == 2:
-            print(f"Você Perdeu seu", pokemon, "Morreu")
+            print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
-                  os.system('color c')
-                  time.sleep(0.2)
-                  os.system('color f')
-                  time.sleep(0.2)
+                os.system('color c')
+                time.sleep(0.2)
+                os.system('color f')
+                time.sleep(0.2)
+                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                if bagO == ("sim"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("s"):
+                    print(bag)
+                    rem = (input("Qual item você quer usar: "))
+                    bag.remove(rem)
+                    print(bag)
+                    if rem == ("revive"):
+                        death = False
+                        break
+
+                elif bagO == ("não"):
+                    break
+
+                else:
+                    break
 
         elif pcPokemon == 4 and select == 3:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ".lower())
+            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
             win = True
+            coin += 15
 
 
     if continuar == ("sim"):
