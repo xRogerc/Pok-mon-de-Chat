@@ -14,7 +14,6 @@ bag = [ ]
 coin = int(randrange(30,90))
 bagO = ("")
 merc = ("")
-chancedemerc = int(randrange(1,100))
 
 print("--------------------------------------------------")
 
@@ -43,8 +42,9 @@ while (death == False):
     while(death == False and win == False):
         pcPokemon = int(randrange(1,5))
         pcPokeNivel = int(randrange(0,5))
+        chancedemerc = int(randrange(1,100))
 
-        if chancedemerc >= 65:
+        if chancedemerc >= 60:
             print("--------------------------------------------------\n")
             print("-----------O Mercador está nas redonzas-----------\n")
             merc = input("Você quer comprar alguma coisa: ").lower()
@@ -215,27 +215,27 @@ quu..__
                    ,'         _.-'              .
                   /   ,     ,'                   `
                  .   /     /                     ``.
-                 |  |     .                       \.
-       ____      |___._.  |       __               \ `.
-     .'    `---""       ``"-.--"'`  \               .  
+                 |  |     .                        .
+       ____      |___._.  |       __                 `.
+     .'    `---""       ``"-.--"'`  '               .  
     .  ,            __               `              |   .
-    `,'         ,-"'  .               \             |    L
+    `,'         ,-"'  .               '             |    L
    ,'          '    _.'                -._          /    |
   ,`-.    ,".   `--'                      >.      ,'     |
  . .' '   `-'       __    ,  ,-.         /  `.__.-      ,'
- ||:, .           ,'  ;  /  / \ `        `.    .      .'/
- j|:D  \          `--'  ' ,'_  . .         `.__, \   , /
+ ||:, .           ,'  ;  /  / ' `        `.    .      .'/
+ j|:D  '          `--'  ' ,'_  . .         `.__, '   , /
 / L:_  |                 .  "' :_;                `.'.'
 .    ""'                  """""'                    V
  `.                                 .    `.   _,..  `
    `,_   .    .                _,-'/    .. `,'   __  `
-    ) \`._        ___....----"'  ,'   .'  \ |   '  \  .
+    ) '`._        ___....----"'  ,'   .'  \ |   '     .
    /   `. "`-.--"'         _,' ,'     `---' |    `./  |
   .   _  `""'--.._____..--"   ,             '         |
   | ." `. `-.                /-.           /          ,
   | `._.'    `,_            ;  /         ,'          .
  .'          /| `-.        . ,'         ,           ,
- '-.__ __ _,','    '`-..___;-...__   ,.'\ ____.___.'
+ '-.__ __ _,','    '`-..___;-...__   ,.'' ____.___.'
  `"^--'..'   '-`-^-'"--    `-^-'`.''"""""`.,^.`.--' 
                  ''')
             pcokemon = ("Bulbasauro")
@@ -253,30 +253,35 @@ quu..__
                     time.sleep(0.2)
                     os.system('color f')
                     time.sleep(0.2)
-                    bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                    if bagO == ("sim"):
-                        print(bag)
-                        rem = (input("Qual item você quer usar: "))
-                        bag.remove(rem)
-                        print(bag)
-                        if rem == ("revive"):
-                            death = False
-                            break
 
-                    elif bagO == ("s"):
-                        print(bag)
-                        rem = (input("Qual item você quer usar: "))
-                        bag.remove(rem)
-                        print(bag)
-                        if rem == ("revive"):
-                            death = False
-                            break
+                if bag == []:
+                  pass
 
-                    elif bagO == ("não"):
-                        break
+                else:
+                  bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                  if bagO == ("sim"):
+                      print("Mochila:", bag)
+                      rem = (input("Qual item você quer usar: "))
+                      if rem == ("revive"):
+                          bag.remove(rem)
+                          print("Mochila:", bag)
+                          death = False
+                          break
 
-                    else:
-                        break
+                  elif bagO == ("s"):
+                      print("Mochila:", bag)
+                      rem = (input("Qual item você quer usar: "))
+                      if rem == ("revive"):
+                          bag.remove(rem)
+                          print("Mochila:", bag)
+                          death = False
+                          break
+
+                  elif bagO == ("não"):
+                      break
+
+                  else:
+                      break
 
             else:
                 print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -295,30 +300,35 @@ quu..__
                 time.sleep(0.2)
                 os.system('color f')
                 time.sleep(0.2)
-                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                if bagO == ("sim"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
 
-                elif bagO == ("s"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
+            if bag == []:
+              pass
 
-                elif bagO == ("não"):
-                    break
+            else:
+              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+              if bagO == ("sim"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
 
-                else:
-                    break
+              elif bagO == ("s"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
+
+              elif bagO == ("não"):
+                  break
+
+              else:
+                  break
 
         elif pcPokemon == 1 and select == 3:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -336,30 +346,35 @@ quu..__
                 time.sleep(0.2)
                 os.system('color f')
                 time.sleep(0.2)
-                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                if bagO == ("sim"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
 
-                elif bagO == ("s"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
+            if bag == []:
+              pass
 
-                elif bagO == ("não"):
-                    break
+            else:
+              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+              if bagO == ("sim"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
 
-                else:
-                    break
+              elif bagO == ("s"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
+
+              elif bagO == ("não"):
+                  break
+
+              else:
+                  break
 
         elif pcPokemon == 2 and select == 1:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -377,30 +392,35 @@ quu..__
                 time.sleep(0.2)
                 os.system('color f')
                 time.sleep(0.2)
-                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                if bagO == ("sim"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
 
-                elif bagO == ("s"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
+            if bag == []:
+              pass
 
-                elif bagO == ("não"):
-                    break
+            else:
+              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+              if bagO == ("sim"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
 
-                else:
-                    break
+              elif bagO == ("s"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
+
+              elif bagO == ("não"):
+                  break
+
+              else:
+                  break
 
         elif pcPokemon == 2 and select == 4:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -418,30 +438,35 @@ quu..__
                 time.sleep(0.2)
                 os.system('color f')
                 time.sleep(0.2)
-                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                if bagO == ("sim"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
 
-                elif bagO == ("s"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
+            if bag == []:
+              pass
 
-                elif bagO == ("não"):
-                    break
+            else:
+              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+              if bagO == ("sim"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
 
-                else:
-                    break
+              elif bagO == ("s"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
+
+              elif bagO == ("não"):
+                  break
+
+              else:
+                  break
 
         elif pcPokemon == 3 and select == 2:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -459,22 +484,27 @@ quu..__
                 time.sleep(0.2)
                 os.system('color f')
                 time.sleep(0.2)
+
+            if bag == []:
+                pass
+            
+            else:
                 bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
                 if bagO == ("sim"):
-                    print(bag)
+                    print("Mochila:", bag)
                     rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
                     if rem == ("revive"):
+                        bag.remove(rem)
+                        print("Mochila:", bag)
                         death = False
                         break
 
                 elif bagO == ("s"):
-                    print(bag)
+                    print("Mochila:", bag)
                     rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
                     if rem == ("revive"):
+                        bag.remove(rem)
+                        print("Mochila:", bag)
                         death = False
                         break
 
@@ -500,30 +530,35 @@ quu..__
                 time.sleep(0.2)
                 os.system('color f')
                 time.sleep(0.2)
-                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                if bagO == ("sim"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
 
-                elif bagO == ("s"):
-                    print(bag)
-                    rem = (input("Qual item você quer usar: "))
-                    bag.remove(rem)
-                    print(bag)
-                    if rem == ("revive"):
-                        death = False
-                        break
+            if bag == []:
+              pass
 
-                elif bagO == ("não"):
-                    break
+            else:
+              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+              if bagO == ("sim"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
 
-                else:
-                    break
+              elif bagO == ("s"):
+                  print("Mochila:", bag)
+                  rem = (input("Qual item você quer usar: "))
+                  if rem == ("revive"):
+                      bag.remove(rem)
+                      print("Mochila:", bag)
+                      death = False
+                      break
+
+              elif bagO == ("não"):
+                  break
+
+              else:
+                  break
 
         elif pcPokemon == 4 and select == 3:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
