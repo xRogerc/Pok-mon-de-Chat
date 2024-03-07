@@ -3,7 +3,7 @@ import os
 import time
 
 os.system('cls')
-select = int(input("Escolha seu Pokémon:\n 1 para Pikachu\n 2 para Squirtle\n 3 para Charmander\n ainda não adicionado: 4 para Bulbasauro\n Digite a Escolha Aqui: "))
+select = int(input("Escolha seu Pokémon:\n 1 para Pikachu\n 2 para Squirtle\n 3 para Charmander\n 4 para Bulbasauro\n Digite a Escolha Aqui: "))
 pokeNivelP = 1
 death = False
 win = False
@@ -22,9 +22,13 @@ elif select == 2:
     print("Você Escolheu o Squirtle")
     pokemon = ("Squirtle")
 
-else:
+elif select == 3:
     print("Você Escolheu o Charmander")
     pokemon = ("Charmander")
+
+else:
+    print("Você Escolheu o Bulbasauro")
+    pokemon = ("Bulbasauro")
 
 
 while (death == False):
@@ -121,7 +125,7 @@ quu..__
                  ''')
             pcokemon = ("Squirtle")
 
-        else:
+        elif pcPokemon == 3:
             print("Você esta enfrentando um Charmander Selvagem")
             print(''' 
               _.--""`-..
@@ -161,6 +165,40 @@ quu..__
                  ''')
             pcokemon = ("Charmander")
 
+        else:
+            print("Você esta enfrentando um Bulbasauro Selvagem")
+            print(''' 
+                        _,.------....___,.' ',.-.
+                     ,-'          _,.--"        |
+                   ,'         _.-'              .
+                  /   ,     ,'                   `
+                 .   /     /                     ``.
+                 |  |     .                       \.\
+       ____      |___._.  |       __               \ `.
+     .'    `---""       ``"-.--"'`  \               .  \
+    .  ,            __               `              |   .
+    `,'         ,-"'  .               \             |    L
+   ,'          '    _.'                -._          /    |
+  ,`-.    ,".   `--'                      >.      ,'     |
+ . .'\'   `-'       __    ,  ,-.         /  `.__.-      ,'
+ ||:, .           ,'  ;  /  / \ `        `.    .      .'/
+ j|:D  \          `--'  ' ,'_  . .         `.__, \   , /
+/ L:_  |                 .  "' :_;                `.'.'
+.    ""'                  """""'                    V
+ `.                                 .    `.   _,..  `
+   `,_   .    .                _,-'/    .. `,'   __  `
+    ) \`._        ___....----"'  ,'   .'  \ |   '  \  .
+   /   `. "`-.--"'         _,' ,'     `---' |    `./  |
+  .   _  `""'--.._____..--"   ,             '         |
+  | ." `. `-.                /-.           /          ,
+  | `._.'    `,_            ;  /         ,'          .
+ .'          /| `-.        . ,'         ,           ,
+ '-.__ __ _,','    '`-..___;-...__   ,.'\ ____.___.'
+ `"^--'..'   '-`-^-'"--    `-^-'`.''"""""`.,^.`.--' 
+                 ''')
+            pcokemon = ("Bulbasauro")
+            
+
         print("--------------------------------------------------")
 
         if pcPokemon == select:
@@ -197,7 +235,15 @@ quu..__
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
             continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
             win = True
-                    
+
+        elif pcPokemon == 1 and select == 4:
+            print(f"Você Perdeu seu", pokemon, "Morreu")
+            death = True
+            for i in range(6):
+                  os.system('color c')
+                  time.sleep(0.2)
+                  os.system('color f')
+                  time.sleep(0.2)
 
         elif pcPokemon == 2 and select == 1:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
@@ -215,6 +261,13 @@ quu..__
                   os.system('color f')
                   time.sleep(0.2)
 
+        elif pcPokemon == 2 and select == 4:
+            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
+            pokeNivelP = pokeNivelP + 1
+            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
+            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+            win = True
+
         elif pcPokemon == 3 and select == 1:
             print(f"Você Perdeu seu", pokemon, "Morreu")
             death = True
@@ -225,6 +278,38 @@ quu..__
                   time.sleep(0.2)
 
         elif pcPokemon == 3 and select == 2:
+            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
+            pokeNivelP = pokeNivelP + 1
+            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
+            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ".lower())
+            win = True
+
+        elif pcPokemon == 3 and select == 4:
+            print(f"Você Perdeu seu", pokemon, "Morreu")
+            death = True
+            for i in range(6):
+                  os.system('color c')
+                  time.sleep(0.2)
+                  os.system('color f')
+                  time.sleep(0.2)
+
+        elif pcPokemon == 4 and select == 1:
+            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
+            pokeNivelP = pokeNivelP + 1
+            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
+            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ".lower())
+            win = True
+
+        elif pcPokemon == 4 and select == 2:
+            print(f"Você Perdeu seu", pokemon, "Morreu")
+            death = True
+            for i in range(6):
+                  os.system('color c')
+                  time.sleep(0.2)
+                  os.system('color f')
+                  time.sleep(0.2)
+
+        elif pcPokemon == 4 and select == 3:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
