@@ -35,14 +35,22 @@ else:
 
 
 while (death == False):
-    if select >= 5:
+    if select >= 5 and select < 11:
         select = 4
 
 
     while(death == False and win == False):
+        
         pcPokemon = int(randrange(1,5))
-        pcPokeNivel = int(randrange(0,5))
         chancedemerc = int(randrange(1,100))
+
+
+        if pokeNivelP < 16:
+            pcPokeNivel = int(randrange(0,14))
+
+        elif pokeNivelP >= 16:
+            pcPokeNivel = int(randrange(15,32))
+
 
         if chancedemerc >= 60:
             print("--------------------------------------------------\n")
@@ -570,13 +578,100 @@ quu..__
 
 
     if continuar == ("sim"):
-      win = False
+        win = False
 
     elif continuar == ("s"):
         win = False
 
     elif continuar == ("não"):
-      death = True
+        death = True
 
     else:
         death = True
+
+
+    if pokeNivelP == 16:
+        os.system('cls')
+
+        for eve in range(9):
+            if eve == 0:
+                print("Seu", pokemon, "está evoluindo.")
+                time.sleep(0.5)
+                os.system('cls')
+            elif eve == 1:
+                print("Seu", pokemon, "está evoluindo..")
+                time.sleep(0.5)
+                os.system('cls')
+            elif eve == 2:
+                print("Seu", pokemon, "está evoluindo...")
+                time.sleep(0.5)
+                os.system('cls')
+            elif eve == 3:
+                print("Seu", pokemon, "está evoluindo.")
+                time.sleep(0.5)
+                os.system('cls')
+            elif eve == 4:
+                print("Seu", pokemon, "está evoluindo..")
+                time.sleep(0.5)
+                os.system('cls')
+            elif eve == 5:
+                print("Seu", pokemon, "está evoluindo...")
+                time.sleep(0.5)
+                os.system('cls')
+            elif eve == 6:
+                print("Seu", pokemon, "está evoluindo.")
+                time.sleep(0.5)
+                os.system('cls')
+            elif eve == 7:
+                print("Seu", pokemon, "está evoluindo..")
+                time.sleep(0.5)
+                os.system('cls')
+            else:
+                print("Seu", pokemon, "está evoluindo...")
+                time.sleep(0.5)
+                os.system('cls')
+
+        if select == 1: 
+            pokemon = ("Raichu")
+            print("Agora seu pokémon é um", pokemon)
+            if select == 1:
+                select = 11
+
+        elif select == 2:
+            pokemon = ("Wartortle")
+            print("Agora seu pokémon é um", pokemon)
+            if select == 2:
+                select = 12
+
+        elif select == 3:
+            pokemon = ("Charmeleon")
+            print("Agora seu pokémon é um", pokemon)
+            if select == 3:
+                select = 13
+
+        elif select == 4:
+            pokemon = ("Ivysaur")
+            print("Agora seu pokémon é um", pokemon)
+            if select == 4:
+                select = 14
+
+    if pcPokeNivel >= 16:
+        if pcPokemon == 1: 
+            pcokemon = ("Raichu")
+            if select == 1:
+                select = 11
+
+        elif pcPokemon == 2:
+            pcokemon = ("Wartortle")
+            if select == 2:
+                select = 12
+
+        elif pcPokemon == 3:
+            pcokemon = ("Charmeleon")
+            if select == 3:
+                select = 13
+
+        elif pcPokemon == 4:
+            pcokemon = ("Ivysaur")
+            if select == 4:
+                select = 14
