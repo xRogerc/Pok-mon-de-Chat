@@ -36,7 +36,7 @@ else:
 
 while (death == False):
     if select >= 5:
-        death = True
+        select = 4
 
 
     while(death == False and win == False):
