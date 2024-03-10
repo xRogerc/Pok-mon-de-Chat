@@ -9,3 +9,5 @@ Atualização do dia 09/03/2024:
 Agora é possível fugir de combates, ao entrar em um combate você receberá a mensagem "você quer fugir?" ao escolher a opção sim você tera 35% de chance de escapar do combate ileso.
 As evoluções agora estão totalmente funcionais. Agora ao atingir nível 16 seus inimigos também evoluíram deixando assim os combates mais difíceis.
 Mudança de qualidade de vida, foi adicionado um marcador de nível para os pokémons inimigos para facilitar a sua escolha de tentar ou não fugir de um combate.
+Atualização do dia 10/03/2024:
+Agora é possivel instalar um APP para vocês jogarem o Pokechat.
