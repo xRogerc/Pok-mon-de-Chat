@@ -34,15 +34,18 @@ else:
     pokemon = ("Bulbasauro")
 
 
+if select >= 5 and select < 11 and select > 14:
+    select = 4
+
+
 while (death == False):
-    if select >= 5 and select < 11:
-        select = 4
 
 
     while(death == False and win == False):
         
         pcPokemon = int(randrange(1,5))
         chancedemerc = int(randrange(1,100))
+        chancFuga = randrange(1,100)
 
 
         if pokeNivelP < 16:
@@ -51,48 +54,51 @@ while (death == False):
         elif pokeNivelP >= 16:
             pcPokeNivel = int(randrange(15,32))
 
+        if coin < 30:
+            pass
 
-        if chancedemerc >= 60:
-            print("--------------------------------------------------\n")
-            print("-----------O Mercador está nas redonzas-----------\n")
-            merc = input("Você quer comprar alguma coisa: ").lower()
-            if merc == ("sim"):
-                print("Você tem: $",coin,"\n")
-                print("revive -> 30 golds")
-                print("pokebola -> 50 golds")
-                comprar = input("O que você quer comprar: ")
-                if comprar == ("revive"):
-                    coin -= 30
-                    bag.append("revive")
+        else:
+            if chancedemerc >= 60:
+                print("--------------------------------------------------\n")
+                print("-----------O Mercador está nas redonzas-----------\n")
+                merc = input("Você quer comprar alguma coisa: ").lower()
+                if merc == ("sim"):
                     print("Você tem: $",coin,"\n")
+                    print("revive -> 30 golds")
+                    print("pokebola -> 50 golds")
+                    comprar = input("O que você quer comprar: ")
+                    if comprar == ("revive"):
+                        coin -= 30
+                        bag.append("revive")
+                        print("Você tem: $",coin,"\n")
 
-                elif comprar == ("pokebola"):
-                    coin -= 50
-                    bag.append("pokebola")
+                    elif comprar == ("pokebola"):
+                        coin -= 50
+                        bag.append("pokebola")
+                        print("Você tem: $",coin,"\n")
+
+                elif merc == ("s"):
                     print("Você tem: $",coin,"\n")
+                    print("revive -> 30 golds")
+                    print("pokebola -> 50 golds")
+                    comprar = input("O que você quer comprar: ")
+                    if comprar == ("revive"):
+                        coin -= 30
+                        bag.append("revive")
+                        print("Você tem: $",coin,"\n")
 
-            elif merc == ("s"):
-                print("Você tem: $",coin,"\n")
-                print("revive -> 30 golds")
-                print("pokebola -> 50 golds")
-                comprar = input("O que você quer comprar: ")
-                if comprar == ("revive"):
-                    coin -= 30
-                    bag.append("revive")
-                    print("Você tem: $",coin,"\n")
+                    elif comprar == ("pokebola"):
+                        coin -= 50
+                        bag.append("pokebola")
+                        print("Você tem: $",coin,"\n")
 
-                elif comprar == ("pokebola"):
-                    coin -= 50
-                    bag.append("pokebola")
-                    print("Você tem: $",coin,"\n")
-
-            else:
-                pass
+                else:
+                    pass
 
         print("--------------------------------------------------\n")
 
         if pcPokemon == 1:
-            print("Você esta enfrentando um Pikachu Selvagem")
+            print("Você esta enfrentando um Pikachu Selvagem nível", pcPokeNivel)
             print('''
 quu..__
  $$$b  `---.__
@@ -135,9 +141,115 @@ quu..__
                                    `:.:'
                   ''')
             pcokemon = ("Pikachu")
+            fuga = input("Você quer fugir do combate?: ")
+            if fuga == ("sim"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("s"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("não"):
+                pass
+
+            else:
+                pass
+
+        elif pcPokemon == 11:
+            print("Você esta enfrentando um Raichu Selvagem nível", pcPokeNivel)
+            print(''' 
+                                                                           :--                      
+                                                                   =>]][%#<+:                       
+                                                              =<[]*=)#<:                            
+                                                          :>#> :=#][)                               
+                                                        <]-  +}>:-}-                                
+                                                     =]*  -]]-  +)                                  
+                                                   =[=  +}<:   +)     -})=                          
+  ]#%$%#})*-:                  ::=><]]]]<*-:     :[>  +#=     =<        )=<}=                       
+     -<}+<}[>+)#]-         +[<=:           :=<[==[: =}=       [:         +> :<):                    
+        +]=  =<]=-<}>:  =]>:                   <)  >]:       -)           =>   +<:                  
+          +}-   -]>:-][]-                     -[  -[          *<-          -<    >>                 
+           :[-    -#-<<                       :}=  *%[*-:::::::::>#*        -*    -[:               
+            =+     >]>                  :*<}=   +]}]<>]}|]<+--::-**-<=       ->     <=              
+           -[-    =[]:                  >>-}%-       ]+        :[*-)-*        ==     <>             
+          >[:  -<}*-]   :               =%@@}:       -[         ]+-=)-:=:      <:     <*            
+        :[]%[<**+++<> -}:)                    -#[[%<  <=               )>+}*    ]      }+           
+        <<:+>-     ** +@%$+   ]#+        :*=:<:    :]+=*                )=  +[+ *-     :}-          
+        )==+:}:    )- :)%<       -+>><))<)]:+=      :]:)                :]    :<]+      =]          
+        :]])[<    -)--   :  :+]<-         [ =*      -) <-                =<              ]+         
+                  *<  ++ >}#:      -]#)+=>}  *)    :]: -<                 >-             :}:        
+         +][]))][]}-   ->  -}-  -[*:     -[    -++=:    ]                 ->              <=        
+       *):     +<==<    <:  -}+*]:       >>             >:                 ]-              +*        
+      :}=       *+ +<   >:    ][        :}:             +=   ::            >*              =<        
+       :}=       )  :[=)*      >#:      *>              =[%[+  :*}:        *>              -]        
+         -<}> ->:     +<        -}*    <[:            >#+:        >+       +<     +:       -]        
+            -][+        =*        =[)>]+            =*:)]:        =<       ><    +]<<:     -|        
+              :]*         ::                       *:  >]         ]*       ]=   -|  |]-    -/        
+                -}:                                   -]         =#:      :<    )|   \ =  =|        
+                +]%-  ]-                              +#)*-     -]:       <-   )/      \> )|        
+            -<%@   @*]+                                   :)* :>*       :]*   >/        \[/         
+          +%@ @%]-  ))                                    :-[]-        -[=  =/           -          
+        +%@ @[:     >=      :=                           ::}@%)-    :))-  -#/                       
+       )@ @[:       ]:   =}[}:[>[-                         [@@@@@@@)-  -)_/                         
+      *@ @<      :>[<))=>]  ***+>+                         |: :+<]])<<+/                            
+      ]@@%      =<     =}:    ::>=                         |                                        
+      >@ @[:   -]       )       <=                        -|                                        
+       >@   @#$%:      :)       )-                        *|                                        
+        :>}@  @}       -)       <-                        [}\                                       
+             =)[       :[       >-                       **+|                                       
+              :)        [:      >-                         -|                                       
+               <+       >:  )*]-*=                         -]                                       
+                ]:      =+  ]:=**+                    ::   +|                                       
+                :]:      )- +=->+*                  :<)    )|                                       
+                  <*      ): ][+=>                 <]:    :}|                                       
+                   -)*    ]<    -<              *]>:      +/                                        
+                      +))>*#<   :]:      :=+<[]*         =[|                                        
+                           :[<: -) -=++}):              +|/                                          
+                             :*>+      [*#- >:        :]/                                           
+                                       ]  +<]#[-    =]</                                            
+                                       <-     -[<<<*/                                               
+                                       =<     :-:<+                                                 
+                                        <-  +> :)=]:                                                
+                                        :[- -}>)>=:                 
+                 ''')
+            fuga = input("Você quer fugir?: ")
+            if fuga == ("sim"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("s"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("não"):
+                pass
+
+            else:
+                pass
 
         elif pcPokemon == 2:
-            print("Você esta enfrentando um Squirtle Selvagem")
+            print("Você esta enfrentando um Squirtle Selvagem nível", pcPokeNivel)
             print(''' 
                _,........__
             ,-'            "`-.
@@ -174,9 +286,98 @@ quu..__
                                   `---.__,--.'
                  ''')
             pcokemon = ("Squirtle")
+            fuga = input("Você quer fugir?: ")
+            if fuga == ("sim"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("s"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("não"):
+                pass
+
+            else:
+                pass
+
+        elif pcPokemon == 12:
+            print("Você esta enfrentando um Wartortle Selvagem nível", pcPokeNivel)
+            print(''' 
+     __                                _.--'"7
+    `. `--._                        ,-'_,-  ,'
+     ,'  `-.`-.                   /' .'    ,|
+     `.     `. `-     __...___   /  /     - j
+       `.     `  `.-""        " .  /       /
+         \     /                ` /       /
+          \   /                         ,'
+          '._'_               ,-'       |
+             | \            ,|  |   ...-'
+             || `         ,|_|  |   | `             _..__
+            /|| |          | |  |   |  \  _,_    .-"     `-.
+           | '.-'          |_|_,' __!  | /|  |  /           '
+   ,-...___ .=                  ._..'  /`.| ,`,.      _,.._ |
+  |   |,.. \     '  `'        ____,  ,' `--','  |    /      |
+ ,`-..'  _)  .`-..___,---'_...._/  .'      '-...'   |      /
+'.__' ""'      `.,------'"'      ,/            ,     `.._.' `.
+  `.             | `--........,-'.            .         \     '
+    `-.          .   '.,--""     |           ,'\        |      .
+       `.       /     |          L          ,\  .       |  .,---.
+         `._   '      |           \        /  .  L      | /   __ `.
+            `-.       |            `._   ,    l   .    j |   '  `. .
+              |       |               `"' |  .    |   /  '      .' |
+              |       |                   j  |    |  /  , `.__,'   |
+              `.      L                 _.   `    j ,'-'           |
+               |`"---..\._______,...,--' |   |   /|'      /        j
+               '       |                 |   .  / |      '        /
+                .      .              ____L   ''  j    -',       /
+               / `.     .          _,"     \   | /  ,-','      ,'
+              /    `.  ,'`-._     /         \  i'.,'_,'      .'
+             .       `.      `-..'             |_,-'      _.'
+             |         `._      |            ''/      _,-'
+             |            '-..._\             `__,.--'
+            ,'           ,' `-.._`.            .
+           `.    __      |       "'`.          |
+             `-"'  `""""'            7         `.
+                                    `---'--.,'"`' 
+                 ''')
+            fuga = input("Você quer fugir?: ")
+            if fuga == ("sim"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("s"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("não"):
+                pass
+
+            else:
+                pass
 
         elif pcPokemon == 3:
-            print("Você esta enfrentando um Charmander Selvagem")
+            print("Você esta enfrentando um Charmander Selvagem nível", pcPokeNivel)
             print(''' 
               _.--""`-..
             ,'          `.
@@ -214,9 +415,98 @@ quu..__
                             `" " -' 
                  ''')
             pcokemon = ("Charmander")
+            fuga = input("Você quer fugir?: ")
+            if fuga == ("sim"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
 
-        else:
-            print("Você esta enfrentando um Bulbasauro Selvagem")
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("s"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("não"):
+                pass
+
+            else:
+                pass
+
+        elif pcPokemon == 13:
+            print("Você esta enfrentando um Charmeleon Selvagem nível", pcPokeNivel)
+            print(''' 
+                      ,-'`'
+                  _,"'    j
+           __....+       /               .
+       ,-'"             /               ; `-._.'.
+      /                (              ,'       .'
+     |            _.    \             \   ---._ `-.
+     ,|    ,   _.'  Y    \             `- ,'   \   `.`.
+     l'    \ ,'._,\ `.    .              /       ,--. l
+  .,-        `._  |  |    |              \       _   l .
+ /              `"--'    /              .'       ``. |  )
+.\    ,                 |                .        \ `. '
+`.                .     |                '._  __   ;. ''
+  `-..--------...'       \                  `'  `-"'.  '
+      `......___          `._                        |  '
+               /`            `..                     |   .
+              /|                `-.                  |    L
+             / |               \   `._               .    |
+           ,'  |,-"-.   .       .     `.            /     |
+         ,'    |     '   \      |       `.         /      |
+       ,'     /|       \  .     |         .       /       |
+     ,'      / |        \  .    +          \    ,'       .'
+    .       .  |         \ |     \          \_,'        / j
+    |       |  L          `|      .          `        ,' '
+    |    _. |   \          /      |           .     .' ,'
+    |   /  `|    \        .       |  /        |   ,' .'
+    |   ,-..\     -.     ,        | /         |,.' ,'
+    `. |___,`    /  `.   /`.       '          |  .'
+      '-`-'     j     ` /."7-..../|          ,`-'
+                |        .'  / _/_|          .
+                `,       `"'/"'    \          `.
+                  `,       '.       `.         |
+             __,.-'         `.        ''       |
+            /_,-'\          ,'        |        _.
+             |___.---.   ,-'        .-':,-"`\,' .
+                  L,.--"'           '-' |  ,' `-..
+                                        `.' 
+                 ''')
+            fuga = input("Você quer fugir?: ")
+            if fuga == ("sim"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("s"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("não"):
+                pass
+
+            else:
+                pass
+
+        elif pcPokemon == 4:
+            print("Você esta enfrentando um Bulbasauro Selvagem nível", pcPokeNivel)
             print(''' 
                         _,.------....___,.' ',.-.
                      ,-'          _,.--"        |
@@ -247,6 +537,91 @@ quu..__
  `"^--'..'   '-`-^-'"--    `-^-'`.''"""""`.,^.`.--' 
                  ''')
             pcokemon = ("Bulbasauro")
+            fuga = input("Você quer fugir?: ")
+            if fuga == ("sim"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("s"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("não"):
+                pass
+
+            else:
+                pass
+
+        elif pcPokemon == 14:
+            print("Você esta enfrentando um Ivysaur Selvagem nível", pcPokeNivel)
+            print(''' 
+                               ,'"`.,./.
+                             ,'        Y',"..
+                           ,'           \  | '
+                          /              . |  `
+                         /               | |   '
+            __          .                | |    .
+       _   \  `. ---.   |                | j    |
+      / `-._\   `Y   \  |                |.     |
+     _`.    ``    \   \ |..              '      |,-'""7,....
+     l     '-.     . , `|  | , |`. , ,  /,     ,'    '/   ,'_,.-.
+     `-..     `-.  : :     |/ `   ' "\,' | _  /          '-'    /___
+      '""' __.,.-`.: :        /   /._    l'.,'
+       `--,   _.-' `".           /__ `'-.' '         .
+       ,---..._,.--"""""""--.__..----,-.'   .  /    .'   ,.--
+       |                          ,':| /    | /     ;.,-'--      ,.-
+       |     .---.              .'  :|'     |/ ,.-='"-.`"`' _   -.'
+       /    \    /               `. :|--.  _L,"---.._        "----'
+     ,' `.   \ ,'           _,     `''   ``.-'       `-  -..___,'
+    . ,.  .   `   __     .-'  _.-           `.     .__    '
+    |. |`        "  ;   !   ,.  |             `.    `.`'---'
+    ,| |C\       ` /    | ,' |(]|            -. |-..--`
+   /  "'--'       '      /___|__]        `.  `- |`.
+  .       ,'                   ,   /       .    `. '
+    \                      .,-'  ,'         .     `-.
+     x---..`.  -'  __..--'"/"""""  ,-.      |   |   |
+    / \--._'-.,.--'     _`-    _. ' /       |     -.|
+   ,   .   `-..__ ...--'  _,.-' | `   ,.-.  ;   /  '|
+  .  _,'         '"-----""      |    `   | /  ,'    ;
+  |-'  .-.    `._               |     `._// ,'     /
+ _|    `-'   _,' "`--.._________|        `,'    _ /.
+//\   ,-._.'"/\__,.   _,"     /_\__/`. /'.-.'.-/_,`-' 
+`-"`"' v'    `"  `-`-"              `-'`-`  `'
+                 ''')
+            fuga = input("Você quer fugir?: ")
+            if fuga == ("sim"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("s"):
+                if chancFuga >= 65:
+                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                    break
+
+                else:
+                    print("Você não conseguiu fugir")
+                    pass
+
+            elif fuga == ("não"):
+                pass
+
+            else:
+                pass
             
 
         print("--------------------------------------------------")
@@ -274,6 +649,7 @@ quu..__
                           bag.remove(rem)
                           print("Mochila:", bag)
                           death = False
+                          time.sleep(1)
                           break
 
                   elif bagO == ("s"):
@@ -283,6 +659,7 @@ quu..__
                           bag.remove(rem)
                           print("Mochila:", bag)
                           death = False
+                          time.sleep(1)
                           break
 
                   elif bagO == ("não"):
@@ -300,7 +677,7 @@ quu..__
                 coin += 15
             
 
-        elif pcPokemon == 1 and select == 2:
+        elif pcPokemon == 1 and select == 2 or pcPokemon == 11 and select == 12:
             print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
@@ -321,6 +698,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("s"):
@@ -330,6 +708,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("não"):
@@ -338,7 +717,7 @@ quu..__
               else:
                   break
 
-        elif pcPokemon == 1 and select == 3:
+        elif pcPokemon == 1 and select == 3 or pcPokemon == 11 and select == 13:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
@@ -346,7 +725,7 @@ quu..__
             win = True
             coin += 15
 
-        elif pcPokemon == 1 and select == 4:
+        elif pcPokemon == 1 and select == 4 or pcPokemon == 11 and select == 14:
             print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
@@ -367,6 +746,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("s"):
@@ -376,6 +756,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("não"):
@@ -384,7 +765,7 @@ quu..__
               else:
                   break
 
-        elif pcPokemon == 2 and select == 1:
+        elif pcPokemon == 2 and select == 1 or pcPokemon == 12 and select == 11:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
@@ -392,7 +773,7 @@ quu..__
             win = True
             coin += 15
 
-        elif pcPokemon == 2 and select == 3:
+        elif pcPokemon == 2 and select == 3 or pcPokemon == 12 and select == 13:
             print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
@@ -413,6 +794,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("s"):
@@ -422,6 +804,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("não"):
@@ -430,7 +813,7 @@ quu..__
               else:
                   break
 
-        elif pcPokemon == 2 and select == 4:
+        elif pcPokemon == 2 and select == 4 or pcPokemon == 12 and select == 14:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
@@ -438,7 +821,7 @@ quu..__
             win = True
             coin += 15
 
-        elif pcPokemon == 3 and select == 1:
+        elif pcPokemon == 3 and select == 1 or pcPokemon == 13 and select == 11:
             print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
@@ -459,6 +842,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("s"):
@@ -468,6 +852,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("não"):
@@ -476,7 +861,7 @@ quu..__
               else:
                   break
 
-        elif pcPokemon == 3 and select == 2:
+        elif pcPokemon == 3 and select == 2 or pcPokemon == 13 and select == 12:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
@@ -484,7 +869,7 @@ quu..__
             win = True
             coin += 15
 
-        elif pcPokemon == 3 and select == 4:
+        elif pcPokemon == 3 and select == 4 or pcPokemon == 13 and select == 14:
             print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
@@ -505,6 +890,7 @@ quu..__
                         bag.remove(rem)
                         print("Mochila:", bag)
                         death = False
+                        time.sleep(1)
                         break
 
                 elif bagO == ("s"):
@@ -514,6 +900,7 @@ quu..__
                         bag.remove(rem)
                         print("Mochila:", bag)
                         death = False
+                        time.sleep(1)
                         break
 
                 elif bagO == ("não"):
@@ -522,7 +909,7 @@ quu..__
                 else:
                     break
 
-        elif pcPokemon == 4 and select == 1:
+        elif pcPokemon == 4 and select == 1 or pcPokemon == 14 and select == 11:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
@@ -530,7 +917,7 @@ quu..__
             win = True
             coin += 15
 
-        elif pcPokemon == 4 and select == 2:
+        elif pcPokemon == 4 and select == 2 or pcPokemon == 14 and select == 12:
             print(f"Você Perdeu seu", pokemon, "Desmaiou")
             death = True
             for i in range(6):
@@ -551,6 +938,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("s"):
@@ -560,6 +948,7 @@ quu..__
                       bag.remove(rem)
                       print("Mochila:", bag)
                       death = False
+                      time.sleep(1)
                       break
 
               elif bagO == ("não"):
@@ -568,7 +957,7 @@ quu..__
               else:
                   break
 
-        elif pcPokemon == 4 and select == 3:
+        elif pcPokemon == 4 and select == 3 or pcPokemon == 14 and select == 13:
             print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
             pokeNivelP = pokeNivelP + 1
             print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
@@ -592,6 +981,7 @@ quu..__
 
     if pokeNivelP == 16:
         os.system('cls')
+        pokeNivelP = 17
 
         for eve in range(9):
             if eve == 0:
@@ -658,20 +1048,16 @@ quu..__
     if pcPokeNivel >= 16:
         if pcPokemon == 1: 
             pcokemon = ("Raichu")
-            if select == 1:
-                select = 11
+            pcPokemon = 11
 
         elif pcPokemon == 2:
             pcokemon = ("Wartortle")
-            if select == 2:
-                select = 12
+            pcPokemon = 12
 
         elif pcPokemon == 3:
             pcokemon = ("Charmeleon")
-            if select == 3:
-                select = 13
+            pcPokemon = 13
 
         elif pcPokemon == 4:
             pcokemon = ("Ivysaur")
-            if select == 4:
-                select = 14
+            pcPokemon = 14
