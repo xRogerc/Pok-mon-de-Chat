@@ -34,7 +34,7 @@ else:
     pokemon = ("Bulbasauro")
 
 
-if select >= 5 and select < 11 and select > 14:
+if select >= 5:
     select = 4
 
 
