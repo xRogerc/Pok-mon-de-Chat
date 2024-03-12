@@ -1,12 +1,16 @@
 from random import *
 import os
 import time
+import pokestats
+
 
 os.system('cls')
 select = int(input("Escolha seu Pokémon:\n 1 para Pikachu\n 2 para Squirtle\n 3 para Charmander\n 4 para Bulbasauro\n Digite a Escolha Aqui: "))
-pokeNivelP = 1
+pokeNivelP = pokestats.level
+global death
 death = False
 win = False
+recovering = False
 pokemon = ("")
 pcokemon = ("")
 continuar = ("")
@@ -14,8 +18,12 @@ bag = [ ]
 coin = int(randrange(30,90))
 bagO = ("")
 merc = ("")
+life = 0
+superEfect = randrange(1,5)
 
 print("--------------------------------------------------")
+
+#Escolha de Pokémons
 
 if select == 1:
     print("Você Escolheu o Pikachu")
@@ -34,18 +42,18 @@ else:
     pokemon = ("Bulbasauro")
 
 
-if select >= 5:
-    select = 4
+if select >= 5 or select < 1:
+    select = randrange(1,4)
 
 
 while (death == False):
-
 
     while(death == False and win == False):
         
         pcPokemon = int(randrange(1,5))
         chancedemerc = int(randrange(1,100))
         chancFuga = randrange(1,100)
+        merc = False
 
 
         if pokeNivelP < 16:
@@ -54,48 +62,60 @@ while (death == False):
         elif pokeNivelP >= 16:
             pcPokeNivel = int(randrange(15,32))
 
-        if coin < 30:
-            pass
+#Spawn do Mercador
 
-        else:
-            if chancedemerc >= 60:
-                print("--------------------------------------------------\n")
-                print("-----------O Mercador está nas redonzas-----------\n")
-                merc = input("Você quer comprar alguma coisa: ").lower()
-                if merc == ("sim"):
-                    print("Você tem: $",coin,"\n")
-                    print("revive -> 30 golds")
-                    print("pokebola -> 50 golds")
-                    comprar = input("O que você quer comprar: ")
-                    if comprar == ("revive"):
-                        coin -= 30
-                        bag.append("revive")
-                        print("Você tem: $",coin,"\n")
+        while coin >= 15 and chancedemerc >= 60 and merc == False:
+            print("--------------------------------------------------\n")
+            print("-----------O Mercador está nas redonzas-----------\n")
+            merc = input("Você quer comprar alguma coisa: ").lower()
+            if merc == ("sim"):
+                print(f"Você tem: $ {coin}\n")
+                print("revive -> 30 golds")
+                print("pokebola -> 50 golds")
+                print("potion -> 15 golds")
+                comprar = input("O que você quer comprar: ")
+                if comprar == ("revive"):
+                    coin -= 30
+                    bag.append("revive")
+                    print(f"Você tem: $ {coin}\n")
 
-                    elif comprar == ("pokebola"):
-                        coin -= 50
-                        bag.append("pokebola")
-                        print("Você tem: $",coin,"\n")
+                elif comprar == ("pokebola"):
+                    coin -= 50
+                    bag.append("pokebola")
+                    print(f"Você tem: $ {coin}\n")
 
-                elif merc == ("s"):
-                    print("Você tem: $",coin,"\n")
-                    print("revive -> 30 golds")
-                    print("pokebola -> 50 golds")
-                    comprar = input("O que você quer comprar: ")
-                    if comprar == ("revive"):
-                        coin -= 30
-                        bag.append("revive")
-                        print("Você tem: $",coin,"\n")
+                elif comprar == ("potion"):
+                    coin -= 15
+                    bag.append("potion")
+                    print(f"Você tem: $ {coin}\n")
 
-                    elif comprar == ("pokebola"):
-                        coin -= 50
-                        bag.append("pokebola")
-                        print("Você tem: $",coin,"\n")
+            elif merc == ("s"):
+                print(f"Você tem: $ {coin}\n")
+                print("revive -> 30 golds")
+                print("pokebola -> 50 golds")
+                print("potion -> 15 golds")
+                comprar = input("O que você quer comprar: ")
+                if comprar == ("revive"):
+                    coin -= 30
+                    bag.append("revive")
+                    print(f"Você tem: $ {coin}\n")
 
-                else:
-                    pass
+                elif comprar == ("pokebola"):
+                    coin -= 50
+                    bag.append("pokebola")
+                    print(f"Você tem: $ {coin}\n")
+
+                elif comprar == ("potion"):
+                    coin -= 15
+                    bag.append("potion")
+                    print(f"Você tem: $ {coin}\n")
+
+            else:
+                merc = True
 
         print("--------------------------------------------------\n")
+
+#Configurações dos Pokémons
 
         if pcPokemon == 1:
             print("Você esta enfrentando um Pikachu Selvagem nível", pcPokeNivel)
@@ -141,30 +161,10 @@ quu..__
                                    `:.:'
                   ''')
             pcokemon = ("Pikachu")
-            fuga = input("Você quer fugir do combate?: ")
-            if fuga == ("sim"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
 
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
+            life = randrange(30, 50)
+            tipo = "elétrico"
 
-            elif fuga == ("s"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("não"):
-                pass
-
-            else:
-                pass
 
         elif pcPokemon == 11:
             print("Você esta enfrentando um Raichu Selvagem nível", pcPokeNivel)
@@ -223,30 +223,10 @@ quu..__
                                         <-  +> :)=]:                                                
                                         :[- -}>)>=:                 
                  ''')
-            fuga = input("Você quer fugir?: ")
-            if fuga == ("sim"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
+            
+            life = randrange(60, 100)
+            tipo = "elétrico"
 
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("s"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("não"):
-                pass
-
-            else:
-                pass
 
         elif pcPokemon == 2:
             print("Você esta enfrentando um Squirtle Selvagem nível", pcPokeNivel)
@@ -286,30 +266,10 @@ quu..__
                                   `---.__,--.'
                  ''')
             pcokemon = ("Squirtle")
-            fuga = input("Você quer fugir?: ")
-            if fuga == ("sim"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
+            
+            life = randrange(30, 50)
+            tipo = "água"
 
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("s"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("não"):
-                pass
-
-            else:
-                pass
 
         elif pcPokemon == 12:
             print("Você esta enfrentando um Wartortle Selvagem nível", pcPokeNivel)
@@ -351,30 +311,10 @@ quu..__
              `-"'  `""""'            7         `.
                                     `---'--.,'"`' 
                  ''')
-            fuga = input("Você quer fugir?: ")
-            if fuga == ("sim"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
+            
+            life = randrange(60, 100)
+            tipo = "água"
 
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("s"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("não"):
-                pass
-
-            else:
-                pass
 
         elif pcPokemon == 3:
             print("Você esta enfrentando um Charmander Selvagem nível", pcPokeNivel)
@@ -415,30 +355,10 @@ quu..__
                             `" " -' 
                  ''')
             pcokemon = ("Charmander")
-            fuga = input("Você quer fugir?: ")
-            if fuga == ("sim"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
 
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
+            life = randrange(30, 50)
+            tipo = "fogo"
 
-            elif fuga == ("s"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("não"):
-                pass
-
-            else:
-                pass
 
         elif pcPokemon == 13:
             print("Você esta enfrentando um Charmeleon Selvagem nível", pcPokeNivel)
@@ -480,30 +400,10 @@ quu..__
                   L,.--"'           '-' |  ,' `-..
                                         `.' 
                  ''')
-            fuga = input("Você quer fugir?: ")
-            if fuga == ("sim"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
+            
+            life = randrange(60, 100)
+            tipo = "fogo"
 
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("s"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("não"):
-                pass
-
-            else:
-                pass
 
         elif pcPokemon == 4:
             print("Você esta enfrentando um Bulbasauro Selvagem nível", pcPokeNivel)
@@ -537,30 +437,10 @@ quu..__
  `"^--'..'   '-`-^-'"--    `-^-'`.''"""""`.,^.`.--' 
                  ''')
             pcokemon = ("Bulbasauro")
-            fuga = input("Você quer fugir?: ")
-            if fuga == ("sim"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
 
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
+            life = randrange(30, 50)
+            tipo = "planta"
 
-            elif fuga == ("s"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("não"):
-                pass
-
-            else:
-                pass
 
         elif pcPokemon == 14:
             print("Você esta enfrentando um Ivysaur Selvagem nível", pcPokeNivel)
@@ -598,373 +478,691 @@ quu..__
 //\   ,-._.'"/\__,.   _,"     /_\__/`. /'.-.'.-/_,`-' 
 `-"`"' v'    `"  `-`-"              `-'`-`  `'
                  ''')
-            fuga = input("Você quer fugir?: ")
-            if fuga == ("sim"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("s"):
-                if chancFuga >= 65:
-                    continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                    break
-
-                else:
-                    print("Você não conseguiu fugir")
-                    pass
-
-            elif fuga == ("não"):
-                pass
-
-            else:
-                pass
+            
+            life = randrange(60, 100)
+            tipo = "planta"
             
 
         print("--------------------------------------------------")
 
-        if pcPokemon == select:
-            print(f"Seu", pokemon, "empatou no combate ele será resolvido pelo nivel")
-            if pcPokemon + pcPokeNivel > select + pokeNivelP:
-                print(f"Você Perdeu seu", pokemon, "Desmaiou")
-                death = True
+#Código para tentativa de fuga do combate
+
+        fuga = input("Você quer fugir?: ")
+        if fuga == ("sim"):
+            if chancFuga >= 60:
+                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                break
+
+            else:
+                print("Você não conseguiu fugir")
+                pass
+
+        elif fuga == ("s"):
+            if chancFuga >= 60:
+                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                break
+
+            else:
+                print("Você não conseguiu fugir")
+                pass
+
+        elif fuga == ("não"):
+            pass
+
+        else:
+            pass
+
+        while win == False or recovering == False:
+
+#Verificação de Quem Ganhou o Combate e Recuperação de seu Pokémon
+
+            if pokestats.current_life <= 0:
+                if bag != []:
+                    bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                    if bagO == ("sim"):
+                        print("Mochila:", bag)
+                        rem = input("Qual item você quer usar: ").lower()
+                        if rem == ("revive"):
+                            bag.remove(rem)
+                            print("Mochila:", bag)
+                            recovering = False
+                            pokestats.current_life = pokestats.base_life + pokestats.bonus_life
+                            time.sleep(1)
+                        elif rem == ("potion"):
+                            print("potion não pode ser usado em Pokémons desacordados")
+                            pass
+                        else:
+                            pass
+                            
+
+                    elif bagO == ("s"):
+                        print("Mochila:", bag)
+                        rem = input("Qual item você quer usar: ").lower()
+                        if rem == ("revive"):
+                            bag.remove(rem)
+                            print("Mochila:", bag)
+                            recovering = False
+                            pokestats.current_life = pokestats.base_life + pokestats.bonus_life
+                            time.sleep(1)
+                        elif rem == ("potion"):
+                            print("potion não pode ser usado em Pokémons desacordados")
+                            pass
+                        else:
+                            pass
+                            
+
+                    elif bagO == ("não"):
+                        break
+
+                    else:
+                        break
+
+                else:
+                    print(f"Seu {pokemon} esta se recuperando do combate")
+                    print("Aguarde enquanto seu pokémon se recupera")
+                    recovering == True
+                    time.sleep(30)
+                    recovering == False
+                    pokestats.current_life = pokestats.base_life + pokestats.bonus_life
+                    break
+                        
+
+            if life <= 0:
+                win = True
+                coin += randrange(1,35)
+                pokestats.update_exp(int(randrange(15,45)))
+                print(f"Seu {pokemon} ganhou o combate")
+                print(f"Ele esta no nível: {pokestats.level}")
+                print(f"Com: {pokestats.current_xp} de experiência")
+                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                if continuar != ("não"):
+                    if bag != []:
+                        bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                        if bagO == ("sim"):
+                            print("Mochila:", bag)
+                            rem = input("Qual item você quer usar: ").lower()
+                            if rem == ("potion"):
+                                bag.remove(rem)
+                                print("Mochila:", bag)
+                                pokestats.current_life + 10
+                                time.sleep(1)
+                                break
+                            elif rem == ("revive"):
+                                print("revive não pode ser utilizado em Pokémons que estão acordados")
+                                break
+                            else:
+                                break
+
+                        elif bagO == ("s"):
+                            print("Mochila:", bag)
+                            rem = input("Qual item você quer usar: ").lower()
+                            if rem == ("potion"):
+                                bag.remove(rem)
+                                print("Mochila:", bag)
+                                pokestats.current_life + 10
+                                time.sleep(1)
+                                break
+                            elif rem == ("revive"):
+                                print("revive não pode ser utilizado em Pokémons que estão acordados")
+                                break
+                            else:
+                                break
+
+                        elif bagO == ("não"):
+                            break
+
+                        else:
+                            break
+
+                    else:
+                        break
+
+                elif continuar != ("n"):
+                    if bag != []:
+                        bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                        if bagO == ("sim"):
+                            print("Mochila:", bag)
+                            rem = input("Qual item você quer usar: ").lower()
+                            if rem == ("potion"):
+                                bag.remove(rem)
+                                print("Mochila:", bag)
+                                pokestats.current_life + 10
+                                time.sleep(1)
+                                break
+                            elif rem == ("revive"):
+                                print("revive não pode ser utilizado em Pokémons que estão acordados")
+                                break
+                            else:
+                                break
+
+                        elif bagO == ("s"):
+                            print("Mochila:", bag)
+                            rem = input("Qual item você quer usar: ").lower()
+                            if rem == ("potion"):
+                                bag.remove(rem)
+                                print("Mochila:", bag)
+                                pokestats.current_life + 10
+                                time.sleep(1)
+                                break
+                            elif rem == ("revive"):
+                                print("revive não pode ser utilizado em Pokémons que estão acordados")
+                                break
+                            else:
+                                break
+
+                        elif bagO == ("não"):
+                            break
+
+                        else:
+                            break
+
+                    else:
+                        break
+
+                elif continuar != ("nao"):
+                    if bag != []:
+                        bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
+                        if bagO == ("sim"):
+                            print("Mochila:", bag)
+                            rem = input("Qual item você quer usar: ").lower()
+                            if rem == ("potion"):
+                                bag.remove(rem)
+                                print("Mochila:", bag)
+                                pokestats.current_life + 10
+                                time.sleep(1)
+                                break
+                            elif rem == ("revive"):
+                                print("revive não pode ser utilizado em Pokémons que estão acordados")
+                                break
+                            else:
+                                break
+
+                        elif bagO == ("s"):
+                            print("Mochila:", bag)
+                            rem = input("Qual item você quer usar: ").lower()
+                            if rem == ("potion"):
+                                bag.remove(rem)
+                                print("Mochila:", bag)
+                                pokestats.current_life + 10
+                                time.sleep(1)
+                                break
+                            elif rem == ("revive"):
+                                print("revive não pode ser utilizado em Pokémons que estão acordados")
+                                break
+                            else:
+                                break
+
+                        elif bagO == ("não"):
+                            break
+
+                        else:
+                            break
+
+                    else:
+                        break
+
+                else:
+                    break
+                
+
+#Os combates Acontecem aqui
+            
+            chancedeacerto = randrange(1,100)
+
+            if chancedeacerto >= 30:
+                pcdano = randrange(10,15 + pcPokeNivel)
+                pokestats.update_healt(pcdano)
+                print(f"Seu {pokemon} Tomou {pcdano} de Dano")
+                print(f"Seu {pokemon} esta com {pokestats.current_life} de vida\n")
                 for i in range(6):
                     os.system('color c')
                     time.sleep(0.2)
                     os.system('color f')
                     time.sleep(0.2)
 
-                if bag == []:
-                  pass
+            else:
+                print(f"O {pcokemon} inimigo errou o ataque\n")
+
+            chancedeplacert = randrange(1,100)
+
+            if pokestats.current_life > 0:
+                if chancedeplacert >= 30:
+                    if select == pcPokemon:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 1 and pcPokemon == 2 or select == 11 and pcPokemon == 12:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 1 and pcPokemon == 3 or select == 11 and pcPokemon == 13:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 1 and pcPokemon == 4 or select == 11 and pcPokemon == 14:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 2 and pcPokemon == 1 or select == 12 and pcPokemon == 11:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 2 and pcPokemon == 3 or select == 12 and pcPokemon == 13:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 2 and pcPokemon == 4 or select == 12 and pcPokemon == 14:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 3 and pcPokemon == 1 or select == 13 and pcPokemon == 11:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 3 and pcPokemon == 2 or select == 13 and pcPokemon == 12:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 3 and pcPokemon == 4 or select == 13 and pcPokemon == 14:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 4 and pcPokemon == 1 or select == 14 and pcPokemon == 11:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 4 and pcPokemon == 2 or select == 14 and pcPokemon == 12:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP + superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+
+                    elif select == 4 and pcPokemon == 3 or select == 14 and pcPokemon == 13:
+                        print("Seu Pokémon vai atacar")
+                        if pokestats.level < 4:
+                            dano = randrange(8,13 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 8:
+                            dano = randrange(10,15 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 12:
+                            dano = randrange(12,17 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        elif pokestats.level < 16:
+                            dano = randrange(14,19 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
+                        else:
+                            dano = randrange(16,21 + pokeNivelP - superEfect)
+                            life -= dano
+                            if life < 0:
+                                life = 0
+                            print(f"O {pcokemon} inimigo tomou {dano} de dano ele esta com {life} de vida\n")
 
                 else:
-                  bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                  if bagO == ("sim"):
-                      print("Mochila:", bag)
-                      rem = (input("Qual item você quer usar: "))
-                      if rem == ("revive"):
-                          bag.remove(rem)
-                          print("Mochila:", bag)
-                          death = False
-                          time.sleep(1)
-                          break
-
-                  elif bagO == ("s"):
-                      print("Mochila:", bag)
-                      rem = (input("Qual item você quer usar: "))
-                      if rem == ("revive"):
-                          bag.remove(rem)
-                          print("Mochila:", bag)
-                          death = False
-                          time.sleep(1)
-                          break
-
-                  elif bagO == ("não"):
-                      break
-
-                  else:
-                      break
-
+                    print(f"Seu {pokemon} errou o ataque\n")
             else:
-                print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
-                pokeNivelP = pokeNivelP + 1
-                print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-                win = True
-                coin += 15
-            
-
-        elif pcPokemon == 1 and select == 2 or pcPokemon == 11 and select == 12:
-            print(f"Você Perdeu seu", pokemon, "Desmaiou")
-            death = True
-            for i in range(6):
-                os.system('color c')
-                time.sleep(0.2)
-                os.system('color f')
-                time.sleep(0.2)
-
-            if bag == []:
-              pass
-
-            else:
-              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-              if bagO == ("sim"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("s"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("não"):
-                  break
-
-              else:
-                  break
-
-        elif pcPokemon == 1 and select == 3 or pcPokemon == 11 and select == 13:
-            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
-            pokeNivelP = pokeNivelP + 1
-            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-            win = True
-            coin += 15
-
-        elif pcPokemon == 1 and select == 4 or pcPokemon == 11 and select == 14:
-            print(f"Você Perdeu seu", pokemon, "Desmaiou")
-            death = True
-            for i in range(6):
-                os.system('color c')
-                time.sleep(0.2)
-                os.system('color f')
-                time.sleep(0.2)
-
-            if bag == []:
-              pass
-
-            else:
-              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-              if bagO == ("sim"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("s"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("não"):
-                  break
-
-              else:
-                  break
-
-        elif pcPokemon == 2 and select == 1 or pcPokemon == 12 and select == 11:
-            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
-            pokeNivelP = pokeNivelP + 1
-            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-            win = True
-            coin += 15
-
-        elif pcPokemon == 2 and select == 3 or pcPokemon == 12 and select == 13:
-            print(f"Você Perdeu seu", pokemon, "Desmaiou")
-            death = True
-            for i in range(6):
-                os.system('color c')
-                time.sleep(0.2)
-                os.system('color f')
-                time.sleep(0.2)
-
-            if bag == []:
-              pass
-
-            else:
-              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-              if bagO == ("sim"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("s"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("não"):
-                  break
-
-              else:
-                  break
-
-        elif pcPokemon == 2 and select == 4 or pcPokemon == 12 and select == 14:
-            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
-            pokeNivelP = pokeNivelP + 1
-            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
-            win = True
-            coin += 15
-
-        elif pcPokemon == 3 and select == 1 or pcPokemon == 13 and select == 11:
-            print(f"Você Perdeu seu", pokemon, "Desmaiou")
-            death = True
-            for i in range(6):
-                os.system('color c')
-                time.sleep(0.2)
-                os.system('color f')
-                time.sleep(0.2)
-
-            if bag == []:
-              pass
-
-            else:
-              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-              if bagO == ("sim"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("s"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("não"):
-                  break
-
-              else:
-                  break
-
-        elif pcPokemon == 3 and select == 2 or pcPokemon == 13 and select == 12:
-            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
-            pokeNivelP = pokeNivelP + 1
-            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
-            win = True
-            coin += 15
-
-        elif pcPokemon == 3 and select == 4 or pcPokemon == 13 and select == 14:
-            print(f"Você Perdeu seu", pokemon, "Desmaiou")
-            death = True
-            for i in range(6):
-                os.system('color c')
-                time.sleep(0.2)
-                os.system('color f')
-                time.sleep(0.2)
-
-            if bag == []:
                 pass
-            
-            else:
-                bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                if bagO == ("sim"):
-                    print("Mochila:", bag)
-                    rem = (input("Qual item você quer usar: "))
-                    if rem == ("revive"):
-                        bag.remove(rem)
-                        print("Mochila:", bag)
-                        death = False
-                        time.sleep(1)
-                        break
 
-                elif bagO == ("s"):
-                    print("Mochila:", bag)
-                    rem = (input("Qual item você quer usar: "))
-                    if rem == ("revive"):
-                        bag.remove(rem)
-                        print("Mochila:", bag)
-                        death = False
-                        time.sleep(1)
-                        break
 
-                elif bagO == ("não"):
-                    break
-
-                else:
-                    break
-
-        elif pcPokemon == 4 and select == 1 or pcPokemon == 14 and select == 11:
-            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
-            pokeNivelP = pokeNivelP + 1
-            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
-            win = True
-            coin += 15
-
-        elif pcPokemon == 4 and select == 2 or pcPokemon == 14 and select == 12:
-            print(f"Você Perdeu seu", pokemon, "Desmaiou")
-            death = True
-            for i in range(6):
-                os.system('color c')
-                time.sleep(0.2)
-                os.system('color f')
-                time.sleep(0.2)
-
-            if bag == []:
-              pass
-
-            else:
-              bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-              if bagO == ("sim"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("s"):
-                  print("Mochila:", bag)
-                  rem = (input("Qual item você quer usar: "))
-                  if rem == ("revive"):
-                      bag.remove(rem)
-                      print("Mochila:", bag)
-                      death = False
-                      time.sleep(1)
-                      break
-
-              elif bagO == ("não"):
-                  break
-
-              else:
-                  break
-
-        elif pcPokemon == 4 and select == 3 or pcPokemon == 14 and select == 13:
-            print(f"Você Ganhou seu", pokemon, "Subiu de Nivel")
-            pokeNivelP = pokeNivelP + 1
-            print(f"Esse é o Nivel de seu", pokemon, pokeNivelP)
-            continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
-            win = True
-            coin += 15
-
+#Verificação de Continuidade para o Game
 
     if continuar == ("sim"):
         win = False
@@ -978,6 +1176,7 @@ quu..__
     else:
         death = True
 
+#Sistema de Evolução dos Pokémons
 
     if pokeNivelP == 16:
         os.system('cls')
