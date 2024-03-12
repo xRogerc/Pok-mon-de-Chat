@@ -11,3 +11,7 @@ As evoluções agora estão totalmente funcionais. Agora ao atingir nível 16 se
 Mudança de qualidade de vida, foi adicionado um marcador de nível para os pokémons inimigos para facilitar a sua escolha de tentar ou não fugir de um combate.
 Atualização do dia 10/03/2024:
 Agora é possivel instalar um APP para vocês jogarem o Pokechat.
+Atualização do dia 12/03/2024:
+Novo sistema de combate adicionado, agora as lutas realmente acontecem e é possível acompanhar a redução de vida dos pokémons. Um sistema foi implementado para verificar a fraqueza de cada pokémon e aumentar ou reduzir o dano que eles levam.
+Novo sisteme de nível adicionado, agora é mais dificil subir de nível.
+Essa versão esta apresentando alguns bugs, irei corrigir na próxima para finalizar o projeto.
