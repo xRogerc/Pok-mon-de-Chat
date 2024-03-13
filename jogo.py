@@ -487,10 +487,11 @@ quu..__
 
 #Código para tentativa de fuga do combate
 
-        fuga = input("Você quer fugir?: ")
+        fuga = input("Você quer fugir?: ").lower()
         if fuga == ("sim"):
             if chancFuga >= 60:
-                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                print("Você conseguiu fugir")
+                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
                 break
 
             else:
@@ -499,7 +500,8 @@ quu..__
 
         elif fuga == ("s"):
             if chancFuga >= 60:
-                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                print("Você conseguiu fugir")
+                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
                 break
 
             else:
@@ -516,7 +518,7 @@ quu..__
 
 #Verificação de Quem Ganhou o Combate e Recuperação de seu Pokémon
 
-            if pokestats.current_life <= 0:
+            if pokestats.current_life == 0:
                 if bag != []:
                     bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
                     if bagO == ("sim"):
@@ -528,11 +530,25 @@ quu..__
                             recovering = False
                             pokestats.current_life = pokestats.base_life + pokestats.bonus_life
                             time.sleep(1)
+
                         elif rem == ("potion"):
-                            print("potion não pode ser usado em Pokémons desacordados")
-                            pass
+                            print("potion não pode ser usado em Pokémons desacordados\n")
+                            print(f"Seu {pokemon} esta se recuperando do combate")
+                            print("Aguarde enquanto seu pokémon se recupera")
+                            recovering == True
+                            time.sleep(15)
+                            recovering == False
+                            pokestats.current_life = pokestats.base_life + pokestats.bonus_life
+                            break
+
                         else:
-                            pass
+                            print(f"Seu {pokemon} esta se recuperando do combate")
+                            print("Aguarde enquanto seu pokémon se recupera")
+                            recovering == True
+                            time.sleep(15)
+                            recovering == False
+                            pokestats.current_life = pokestats.base_life + pokestats.bonus_life
+                            break
                             
 
                     elif bagO == ("s"):
@@ -544,24 +560,49 @@ quu..__
                             recovering = False
                             pokestats.current_life = pokestats.base_life + pokestats.bonus_life
                             time.sleep(1)
+
                         elif rem == ("potion"):
-                            print("potion não pode ser usado em Pokémons desacordados")
-                            pass
+                            print("potion não pode ser usado em Pokémons desacordados\n")
+                            print(f"Seu {pokemon} esta se recuperando do combate")
+                            print("Aguarde enquanto seu pokémon se recupera")
+                            recovering == True
+                            time.sleep(15)
+                            recovering == False
+                            pokestats.current_life = pokestats.base_life + pokestats.bonus_life
+                            break
+
                         else:
-                            pass
+                            print(f"Seu {pokemon} esta se recuperando do combate")
+                            print("Aguarde enquanto seu pokémon se recupera")
+                            recovering == True
+                            time.sleep(15)
+                            recovering == False
+                            pokestats.current_life = pokestats.base_life + pokestats.bonus_life
+                            break
                             
 
                     elif bagO == ("não"):
+                        print(f"Seu {pokemon} esta se recuperando do combate")
+                        print("Aguarde enquanto seu pokémon se recupera")
+                        recovering == True
+                        time.sleep(15)
+                        recovering == False
+                        pokestats.current_life = pokestats.base_life + pokestats.bonus_life
                         break
 
                     else:
+                        print(f"Seu {pokemon} esta se recuperando do combate")
+                        print("Aguarde enquanto seu pokémon se recupera")
+                        recovering == True
+                        time.sleep(15)
+                        recovering == False
+                        pokestats.current_life = pokestats.base_life + pokestats.bonus_life
                         break
-
                 else:
                     print(f"Seu {pokemon} esta se recuperando do combate")
                     print("Aguarde enquanto seu pokémon se recupera")
                     recovering == True
-                    time.sleep(30)
+                    time.sleep(15)
                     recovering == False
                     pokestats.current_life = pokestats.base_life + pokestats.bonus_life
                     break
@@ -574,7 +615,12 @@ quu..__
                 print(f"Seu {pokemon} ganhou o combate")
                 print(f"Ele esta no nível: {pokestats.level}")
                 print(f"Com: {pokestats.current_xp} de experiência")
-                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ")
+                for i in range(6):
+                    os.system('color 2')
+                    time.sleep(0.2)
+                    os.system('color f')
+                    time.sleep(0.2)
+                continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
                 if continuar != ("não"):
                     if bag != []:
                         bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
