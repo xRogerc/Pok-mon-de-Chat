@@ -5,6 +5,7 @@ import pokestats
 
 
 os.system('cls')
+
 select = int(input("Escolha seu Pokémon:\n 1 para Pikachu\n 2 para Squirtle\n 3 para Charmander\n 4 para Bulbasauro\n Digite a Escolha Aqui: "))
 pokeNivelP = pokestats.level
 global death
@@ -621,7 +622,7 @@ quu..__
                     os.system('color f')
                     time.sleep(0.2)
                 continuar = input("Digite Sim para Continuar e Não para Encerrar o Jogo: ").lower()
-                if continuar != ("não"):
+                if continuar == ("sim"):
                     if bag != []:
                         bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
                         if bagO == ("sim"):
@@ -663,49 +664,7 @@ quu..__
                     else:
                         break
 
-                elif continuar != ("n"):
-                    if bag != []:
-                        bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
-                        if bagO == ("sim"):
-                            print("Mochila:", bag)
-                            rem = input("Qual item você quer usar: ").lower()
-                            if rem == ("potion"):
-                                bag.remove(rem)
-                                print("Mochila:", bag)
-                                pokestats.current_life + 10
-                                time.sleep(1)
-                                break
-                            elif rem == ("revive"):
-                                print("revive não pode ser utilizado em Pokémons que estão acordados")
-                                break
-                            else:
-                                break
-
-                        elif bagO == ("s"):
-                            print("Mochila:", bag)
-                            rem = input("Qual item você quer usar: ").lower()
-                            if rem == ("potion"):
-                                bag.remove(rem)
-                                print("Mochila:", bag)
-                                pokestats.current_life + 10
-                                time.sleep(1)
-                                break
-                            elif rem == ("revive"):
-                                print("revive não pode ser utilizado em Pokémons que estão acordados")
-                                break
-                            else:
-                                break
-
-                        elif bagO == ("não"):
-                            break
-
-                        else:
-                            break
-
-                    else:
-                        break
-
-                elif continuar != ("nao"):
+                elif continuar == ("s"):
                     if bag != []:
                         bagO = input("Você quer abrir a mochila? sim ou não: ").lower()
                         if bagO == ("sim"):
