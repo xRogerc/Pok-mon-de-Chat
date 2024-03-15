@@ -76,19 +76,28 @@ while (death == False):
                 print("potion -> 15 golds")
                 comprar = input("O que você quer comprar: ")
                 if comprar == ("revive"):
-                    coin -= 30
-                    bag.append("revive")
-                    print(f"Você tem: $ {coin}\n")
+                    if coin >= 30:
+                        coin -= 30
+                        bag.append("revive")
+                        print(f"Você tem: $ {coin}\n")
+                    else:
+                        print("Você não tem dinheiro para comprar isso")
 
                 elif comprar == ("pokebola"):
-                    coin -= 50
-                    bag.append("pokebola")
-                    print(f"Você tem: $ {coin}\n")
+                    if coin >= 50:
+                        coin -= 50
+                        bag.append("pokebola")
+                        print(f"Você tem: $ {coin}\n")
+                    else:
+                        print("Você não tem dinheiro para comprar isso")
 
                 elif comprar == ("potion"):
-                    coin -= 15
-                    bag.append("potion")
-                    print(f"Você tem: $ {coin}\n")
+                    if coin >= 15:
+                        coin -= 15
+                        bag.append("potion")
+                        print(f"Você tem: $ {coin}\n")
+                    else:
+                        print("Você não tem dinheiro para comprar isso")
 
             elif merc == ("s"):
                 print(f"Você tem: $ {coin}\n")
@@ -97,19 +106,28 @@ while (death == False):
                 print("potion -> 15 golds")
                 comprar = input("O que você quer comprar: ")
                 if comprar == ("revive"):
-                    coin -= 30
-                    bag.append("revive")
-                    print(f"Você tem: $ {coin}\n")
+                    if coin >= 30:
+                        coin -= 30
+                        bag.append("revive")
+                        print(f"Você tem: $ {coin}\n")
+                    else:
+                        print("Você não tem dinheiro para comprar isso")
 
                 elif comprar == ("pokebola"):
-                    coin -= 50
-                    bag.append("pokebola")
-                    print(f"Você tem: $ {coin}\n")
+                    if coin >= 50:
+                        coin -= 50
+                        bag.append("pokebola")
+                        print(f"Você tem: $ {coin}\n")
+                    else:
+                        print("Você não tem dinheiro para comprar isso")
 
                 elif comprar == ("potion"):
-                    coin -= 15
-                    bag.append("potion")
-                    print(f"Você tem: $ {coin}\n")
+                    if coin >= 15:
+                        coin -= 15
+                        bag.append("potion")
+                        print(f"Você tem: $ {coin}\n")
+                    else:
+                        print("Você não tem dinheiro para comprar isso")
 
             else:
                 merc = True
