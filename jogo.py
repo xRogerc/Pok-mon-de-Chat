@@ -19,6 +19,7 @@ bag = [ ]
 coin = int(randrange(30,90))
 bagO = ("")
 merc = ("")
+merca = False
 life = 0
 superEfect = randrange(1,5)
 
@@ -63,38 +64,30 @@ while (death == False):
         elif pokeNivelP >= 16:
             pcPokeNivel = int(randrange(15,32))
 
-#Spawn do Mercador
 
-        while coin >= 15 and chancedemerc >= 60 and merc == False:
+#Spawn do Mercador
+        if chancedemerc >= 60:
             print("--------------------------------------------------\n")
             print("-----------O Mercador está nas redonzas-----------\n")
+        while coin >= 15 and chancedemerc >= 60 and merca == False:
             merc = input("Você quer comprar alguma coisa: ").lower()
             if merc == ("sim"):
                 print(f"Você tem: $ {coin}\n")
                 print("revive -> 30 golds")
-                print("pokebola -> 50 golds")
                 print("potion -> 15 golds")
                 comprar = input("O que você quer comprar: ")
                 if comprar == ("revive"):
                     if coin >= 30:
-                        coin -= 30
                         bag.append("revive")
-                        print(f"Você tem: $ {coin}\n")
-                    else:
-                        print("Você não tem dinheiro para comprar isso")
-
-                elif comprar == ("pokebola"):
-                    if coin >= 50:
-                        coin -= 50
-                        bag.append("pokebola")
+                        coin -= 30
                         print(f"Você tem: $ {coin}\n")
                     else:
                         print("Você não tem dinheiro para comprar isso")
 
                 elif comprar == ("potion"):
                     if coin >= 15:
-                        coin -= 15
                         bag.append("potion")
+                        coin -= 15
                         print(f"Você tem: $ {coin}\n")
                     else:
                         print("Você não tem dinheiro para comprar isso")
@@ -102,35 +95,26 @@ while (death == False):
             elif merc == ("s"):
                 print(f"Você tem: $ {coin}\n")
                 print("revive -> 30 golds")
-                print("pokebola -> 50 golds")
                 print("potion -> 15 golds")
                 comprar = input("O que você quer comprar: ")
                 if comprar == ("revive"):
                     if coin >= 30:
-                        coin -= 30
                         bag.append("revive")
-                        print(f"Você tem: $ {coin}\n")
-                    else:
-                        print("Você não tem dinheiro para comprar isso")
-
-                elif comprar == ("pokebola"):
-                    if coin >= 50:
-                        coin -= 50
-                        bag.append("pokebola")
+                        coin -= 30
                         print(f"Você tem: $ {coin}\n")
                     else:
                         print("Você não tem dinheiro para comprar isso")
 
                 elif comprar == ("potion"):
                     if coin >= 15:
-                        coin -= 15
                         bag.append("potion")
+                        coin -= 15
                         print(f"Você tem: $ {coin}\n")
                     else:
                         print("Você não tem dinheiro para comprar isso")
 
             else:
-                merc = True
+                merca = True
 
         print("--------------------------------------------------\n")
 
@@ -729,7 +713,7 @@ quu..__
                 
 
 #Os combates Acontecem aqui
-            
+
             chancedeacerto = randrange(1,100)
 
             if chancedeacerto >= 30:
@@ -1183,6 +1167,8 @@ quu..__
                     print(f"Seu {pokemon} errou o ataque\n")
             else:
                 pass
+
+    merca = False
 
 
 #Verificação de Continuidade para o Game
