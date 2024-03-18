@@ -17,3 +17,5 @@ Novo sisteme de nível adicionado, agora é mais dificil subir de nível.
 Essa versão esta apresentando alguns bugs, irei corrigir na próxima.
 Atualização do dia 13/03/2024:
 Os bugs foram corrigidos e pequenas alterações foram implementadas.
+Atualização do dia 18/03/2024:
+Agora você pode comprar mais itens no mercador.
