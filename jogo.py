@@ -66,7 +66,7 @@ while (death == False):
 
 
 #Spawn do Mercador
-        if chancedemerc >= 60:
+        if chancedemerc >= 60 and coin >= 15:
             print("--------------------------------------------------\n")
             print("-----------O Mercador está nas redonzas-----------\n")
         while coin >= 15 and chancedemerc >= 60 and merca == False:
